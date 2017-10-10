@@ -21,6 +21,13 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmcviews', 'jl
                 .when('/datamodel', {
                     template: '<datamodel></datamodel>'
                 })
+                .when('/target', {
+                    template: '<target-schema></target-schema>'
+                })
+                .when('/source', {
+                    template: '<source-schema></source-schema>'
+                })
+
                 .otherwise({redirectTo: '/dashboard'});
         }])
     .controller('AppController',['$scope', '$location', function($scope, $location){
