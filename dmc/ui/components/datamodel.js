@@ -206,7 +206,9 @@
 
             ];
 
-            graphService.buildGraph(erData);
+            $timeout(function(){
+                graphService.buildGraph(erData)
+            },200);
 
         }]);
 
