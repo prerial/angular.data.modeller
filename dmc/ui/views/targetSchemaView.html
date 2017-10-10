@@ -1,0 +1,39 @@
+<div class="container container-view">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+<h3>Target View</h3>
+<form>
+  Pick a topic:
+  <input type="radio" ng-model="myVar" value="Anchors">Anchor Tables
+  <input type="radio" ng-model="myVar" value="Include">Include Tables
+  <input type="radio" ng-model="myVar" value="Exclude">Exclude Tables
+</form>
+
+
+<div ng-switch="myVar">
+  <div ng-switch-when="Anchors">
+     <h1>Anchors</h1>
+     <p>Select Anchor Tables </p>
+  </div>
+  <div ng-switch-when="Include">
+     <h1>Include</h1>
+     <p>Select tables to Include</p>
+  </div>
+  <div ng-switch-when="Exclude">
+     <h1>Exclude </h1>
+     <p>Select tables to exclude.</p>
+  </div>
+</div>
+
+<p>The ng-switch directive hides and shows HTML sections depending on the value of the radio buttons.</p>
+
+
+
+        </div>
+    </div>
+
+        </div>
+    </div>
+</div>
