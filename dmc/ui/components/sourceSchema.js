@@ -10,6 +10,9 @@
         function($scope, $location, $timeout, notification, urls, commonRequestService, graphService) {
 //debugger
 
+            this.submitForm = function(){
+                debugger;
+            }
         }]);
 
 })();
