@@ -15,7 +15,7 @@
                     var erData = resp.data.result;
                     $timeout(function(){
                         graphService.buildGraph(erData)
-                    },200);
+                    },500);
             }).catch( function(msg){
                 $timeout(function() { $scope.expired = true; }, 5000);
                 notification.error('Error: ' + msg.responseText);

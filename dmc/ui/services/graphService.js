@@ -4,6 +4,11 @@
     angular.module('app.dmc').factory('GraphService', function () {
 
 //        var self = this;
+        // Define the zoom function for the zoomable tree
+
+        function zoom() {
+            svgGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        }
 
 //        var margin = {top: 20, right: 10, bottom: 20, left: 10};
         var PointColors = ['lightsteelblue', 'lightgreen'];
@@ -13,70 +18,68 @@
             h = 1900,
             i = 0,
             duration = 500,
-            root;
+            root, tree, diagonal, zoomListener, vis, svgGroup;
 
-  //      var tree = d3.layout.tree().size([h, w - 160]);
-        var tree = d3.layout.tree().size([h, w - 160]);
+        function initialize(){
+        //      var tree = d3.layout.tree().size([h, w - 160]);
+        tree = d3.layout.tree().size([h, w - 160]);
 
-        var diagonal = d3.svg.diagonal()
+        diagonal = d3.svg.diagonal()
             .source(function (d) {
                 return {
-                    "x": d.source.x + d.source.height/2 ,
-                    "y": d.source.y +150
+                    "x": d.source.x + d.source.height / 2,
+                    "y": d.source.y + 150
                 };
             })
             .target(function (d) {
                 return {
-                    "x": d.target.x + d.target.height/2,
-                    "y": d.target.y+100
+                    "x": d.target.x + d.target.height / 2,
+                    "y": d.target.y + 100
                 };
             })
-            .projection(function (d) { return [d.x+15, d.y-30 ];
+            .projection(function (d) {
+                return [d.x + 15, d.y - 30];
             });
-/*
-        function pan(domNode, direction) {
-            var speed = panSpeed, translateX, translateY;
-            if (panTimer) {
-                clearTimeout(panTimer);
-                var translateCoords = d3.transform(svgGroup.attr("transform"));
-                if (direction === 'left' || direction === 'right') {
-                    translateX = direction === 'left' ? translateCoords.translate[0] + speed : translateCoords.translate[0] - speed;
-                    translateY = translateCoords.translate[1];
-                } else if (direction === 'up' || direction === 'down') {
-                    translateX = translateCoords.translate[0];
-                    translateY = direction === 'up' ? translateCoords.translate[1] + speed : translateCoords.translate[1] - speed;
-                }
-                var scaleX = translateCoords.scale[0];
-                var scaleY = translateCoords.scale[1];
-                scale = zoomListener.scale();
-                svgGroup.transition().attr("transform", "translate(" + translateX + "," + translateY + ")scale(" + scale + ")");
-                d3.select(domNode).select('g.node').attr("transform", "translate(" + translateX + "," + translateY + ")");
-                zoomListener.scale(zoomListener.scale());
-                zoomListener.translate([translateX, translateY]);
+        /*
+         function pan(domNode, direction) {
+         var speed = panSpeed, translateX, translateY;
+         if (panTimer) {
+         clearTimeout(panTimer);
+         var translateCoords = d3.transform(svgGroup.attr("transform"));
+         if (direction === 'left' || direction === 'right') {
+         translateX = direction === 'left' ? translateCoords.translate[0] + speed : translateCoords.translate[0] - speed;
+         translateY = translateCoords.translate[1];
+         } else if (direction === 'up' || direction === 'down') {
+         translateX = translateCoords.translate[0];
+         translateY = direction === 'up' ? translateCoords.translate[1] + speed : translateCoords.translate[1] - speed;
+         }
+         var scaleX = translateCoords.scale[0];
+         var scaleY = translateCoords.scale[1];
+         scale = zoomListener.scale();
+         svgGroup.transition().attr("transform", "translate(" + translateX + "," + translateY + ")scale(" + scale + ")");
+         d3.select(domNode).select('g.node').attr("transform", "translate(" + translateX + "," + translateY + ")");
+         zoomListener.scale(zoomListener.scale());
+         zoomListener.translate([translateX, translateY]);
 
-                var panTimer = setTimeout(function() {
-                    pan(domNode, speed, direction);
-                }, 50);
+         var panTimer = setTimeout(function() {
+         pan(domNode, speed, direction);
+         }, 50);
 
-            }
-        }
-*/
-        // Define the zoom function for the zoomable tree
-
-        function zoom() {
-            svgGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-        }
+         }
+         }
+         */
 
         // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
-        var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 3]).on("zoom", zoom);
+        zoomListener = d3.behavior.zoom().scaleExtent([0.1, 3]).on("zoom", zoom);
 
-        var vis = d3.select('#erDiagram').append("svg:svg")
+        vis = d3.select('#erDiagram').append("svg:svg")
             .attr("width", w)
             .attr("height", h)
             .attr("transform", "translate(0,0)")
             .call(zoomListener);
 
-        var svgGroup = vis.append("g");
+        svgGroup = vis.append("g");
+    }
 
         function update(source) {
             var nodes = tree.nodes(root).reverse();
@@ -268,6 +271,7 @@
         }
 
         function buildGraph(erData) {
+            initialize();
             root = erData[0];
             root.x0 = h / 2;
             root.y0 = 0;
