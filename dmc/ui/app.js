@@ -1,6 +1,6 @@
 angular.module('dmcviews', []);
 angular.module('dmc.directives', []);
-angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmc.directives', 'dmcviews', 'nvd3', 'jlareau.pnotify'])
+angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmc.directives', 'dmcviews', 'jlareau.pnotify'])
     .constant('Urls', {
         'getErdData':'/data/erd.json'
     })
