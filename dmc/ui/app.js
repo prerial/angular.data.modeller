@@ -30,10 +30,22 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmc.directives
         }])
     .controller('AppController',['$scope', '$location', function($scope, $location){
 
+        $scope.isLogon = false;
         $scope.users = [];
+        $scope.isActive = function (viewLocation) {
+            var active = (viewLocation === $location.path());
+            return active;
+        };
+        $scope.$on('authenticated', function() {
+            $scope.isLogon = true;
+        });
         $scope.$on('$routeChangeStart', function(event, next, current) {
+            if(next.$$route.originalPath === '/login' && $scope.isLogon){
+                $scope.isLogon = false;
+            }
             $scope.$broadcast("clearPopups");
         });
+
 
     }]);
 
