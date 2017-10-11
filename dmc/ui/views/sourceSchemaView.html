@@ -4,37 +4,37 @@
             <div class="row">
                 <div class="col-md-4">
             <h3>Reverse Engineering</h3>
-            <form class="form-horizontal" ng-submit="$ctrl.submitForm()">
+            <form name="sourceSchemaForm" novalidate class="form-horizontal" ng-submit="$ctrl.submitForm(source)">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="anchor">Anchors:</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="anchor" placeholder="Enter list of Anchor tables" name="anchor">
+                        <input ng-model="source.anchors" class="form-control" id="anchor" placeholder="Enter list of Anchor tables" name="anchor">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="tbl_incl">Include Tables:</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="tbl_incl" placeholder="Enter list of tables to include" name="tbl_incl">
+                        <input ng-model="source.tables_include" class="form-control" id="tbl_incl" placeholder="Enter list of tables to include" name="tbl_incl">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="tbl_excl">Exclude Tables:</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="tbl_excl" placeholder="Enter list of tables to exclude" name="tbl_excl">
+                        <input ng-model="source.tables_target" class="form-control" id="tbl_excl" placeholder="Enter list of tables to exclude" name="tbl_excl">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="auto">Single Step Denormalization</label>
+                            <label><input ng-model="source.single" type="checkbox" name="auto">Single Step Denormalization</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="source">Source Schema:</label>
+                    <label class="control-label col-sm-2" for="source_include">Source Schema:</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="source">
+                        <select ng-model="source.schema_include" class="form-control" id="source_include" name="source_include" placeholder="Please select source" ng-required="true" required>
                             <option>mysql_northwind</option>
                             <option>mysql_daf</option>
                             <option>oracle_dmc</option>
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="target">Target Schema:</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="target">
+                        <select ng-model="source.schema_target" class="form-control" id="target" ng-required="true" required>
                             <option>Flatten</option>
                             <option>Star Schema</option>
                         </select>
@@ -57,10 +57,12 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <!--    <button type="submit" class="btn btn-primary">Submit</button> -->
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button ng-disabled="!sourceSchemaForm.$valid" type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-primary">Close</button>
                     </div>
                 </div>
+                <pre>source = {{source | json}}</pre>
+
             </form>
 
                 </div>

@@ -6,12 +6,13 @@
         controller: 'LoginController'
 
     });
-    angular.module('app.dmc').controller('LoginController', ['$scope', '$location', '$timeout', 'notificationService', 'LoginService',
-          function($scope, $location, $timeout, notificationService, loginService) {
+    angular.module('app.dmc').controller('LoginController', ['$scope','$rootScope', '$location', '$timeout', 'notificationService', 'LoginService',
+          function($scope, $rootScope, $location, $timeout, notificationService, loginService) {
 
               $scope.formSubmit = function() {
                   $scope.expired = false;
                   if(loginService.login($scope.username, $scope.password)) {
+                      $rootScope.$broadcast('authenticated');
                       $scope.error = '';
                       $scope.username = '';
                       $scope.password = '';
@@ -22,13 +23,6 @@
                   }
               };
 
-              $scope.addAlert = function() {
-                  $scope.alerts.push({msg: 'Another alert!'});
-              };
-
-              $scope.closeAlert = function(index) {
-                  $scope.alerts.splice(index, 1);
-              };
         }]);
 
 })();

@@ -2,6 +2,7 @@ module.exports = function(grunt) {
     var app_files = [
             'dmc/ui/common/*.js',
             'dmc/ui/services/*.js',
+            'dmc/ui/directives/*.js',
             'dmc/ui/components/*.js'
         ],
         modules = 'dmc/ui/app.js',
@@ -14,8 +15,8 @@ module.exports = function(grunt) {
         ngtemplates:    {
             dmcviews:          {
                 src:        [
+                    'dmc/ui/directives/*.html',
                     'dmc/ui/views/*.html',
-                    'dmc/ui/directives/*/*.html',
                     'dmc/ui/views/*/*.html'
                 ],
                 dest:       'dmc/ui/templates.js',

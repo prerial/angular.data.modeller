@@ -6,13 +6,13 @@
         controller: 'SourceSchemaController'
 
     });
-    angular.module('app.dmc').controller('SourceSchemaController', ['$scope', '$location', '$timeout', 'notificationService', 'Urls', 'CommonRequestService', 'GraphService',
-        function($scope, $location, $timeout, notification, urls, commonRequestService, graphService) {
-//debugger
+    angular.module('app.dmc').controller('SourceSchemaController', ['$scope', '$location', '$timeout', 'messageService',
+        function($scope, $location, $timeout, messageService) {
 
-            this.submitForm = function(){
-                debugger;
+            this.submitForm = function(formdata){
+                messageService.addMessage(formdata);
+                $location.path('/datamodel');
             }
-        }]);
 
+        }]);
 })();
