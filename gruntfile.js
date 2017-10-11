@@ -15,6 +15,7 @@ module.exports = function(grunt) {
             dmcviews:          {
                 src:        [
                     'dmc/ui/views/*.html',
+                    'dmc/ui/directives/*/*.html',
                     'dmc/ui/views/*/*.html'
                 ],
                 dest:       'dmc/ui/templates.js',
@@ -28,6 +29,7 @@ module.exports = function(grunt) {
             all: {
                 src: [
                     "dmc/ui/css/demo.css",
+                    "dmc/ui/css/directives.css",
                     "dmc/ui/css/rainbow.css",
                     "dmc/ui/css/erd.css",
                     "dmc/ui/css/navbar.css"
