@@ -1,4 +1,4 @@
-     {
+{"result": [{
       "name":"Employees",
       "columns":[
     {"name": "EmployeeID", "type": "int" , "size":11, "primaryKey":"true",  "required":"true" },
@@ -20,7 +20,7 @@
     {"name": "ReportsTo", "type": "varchar" , "size":11 },
     {"name": "PhotoPath", "type": "varchar" , "size":255 },
     {"name": "Salary", "type": "float" }
-		 
+
       ],
       "children":[
          {
@@ -51,7 +51,7 @@
 		{"name": "Quantity", "type": "smallint" , "size":2 },
 		{"name": "Discount", "type": "double", "size":"8,0" }
                   ],
-				  
+
 				  "children":[
                         {
                            "name":"Products",
@@ -83,8 +83,8 @@
     {"name": "Phone", "type": "varchar" , "size":24},
     {"name": "Fax", "type": "varchar" , "size":24},
     {"name": "HomePage", "type": "mediumtext"  }
-                           ],
-						   
+                           ]
+
 						},
 					{
                      "name":"CustomerDemo",
@@ -103,7 +103,7 @@
     {"name": "HomePage", "type": "mediumtext"  }
                      ]}
                      ]
-				 }] 
+				 }]
 				}
             ,
             {
@@ -149,7 +149,7 @@
     {"name": "CategoryName", "type": "varchar" , "size":15 },
     {"name": "Description", "type": "mediumtext" },
     {"name": "Picture", "type": "longblob"}
-                           ],
+                           ]
 
                         }
                      ]
@@ -177,13 +177,14 @@
                         "columns":[
                         {"name": "RegionID", "type": "int" , "size":11, "primaryKey":"true",  "required":"true" },
     {"name": "RegionDescription", "type": "varchar" , "size":50  }
-                        ],
+                        ]
 
                      }
                   ]
                }
             ]
-         } 
+         }
       ]
    }
-
+]
+     }

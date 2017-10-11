@@ -1,8 +1,6 @@
-/**
- * Created by U160964 on 10/9/2017.
- */
 angular.module('dmcviews', []);
-angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmcviews', 'jlareau.pnotify'])
+angular.module('dmc.directives', []);
+angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmc.directives', 'dmcviews', 'nvd3', 'jlareau.pnotify'])
     .constant('Urls', {
         'getErdData':'/data/erd.json'
     })
@@ -21,6 +19,13 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmcviews', 'jl
                 .when('/datamodel', {
                     template: '<datamodel></datamodel>'
                 })
+                .when('/target', {
+                    template: '<target-schema></target-schema>'
+                })
+                .when('/source', {
+                    template: '<source-schema></source-schema>'
+                })
+
                 .otherwise({redirectTo: '/dashboard'});
         }])
     .controller('AppController',['$scope', '$location', function($scope, $location){
