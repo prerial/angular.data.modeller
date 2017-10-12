@@ -11,7 +11,7 @@
 
             var formdata = messageService.getMessage();
             var data = {'requestType': 'getErdData', 'data': formdata.data};
-            commonRequestService.getRequestData(data)
+            commonRequestService.postRequestData(data)
                 .then(function(resp){
                     var erData = resp.data.result;
                     $timeout(function(){
