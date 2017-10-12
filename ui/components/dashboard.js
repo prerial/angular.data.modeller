@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('app.dmc').component('dashboard', {
-        templateUrl: 'dmc/ui/views/dashboardView.html',
+        templateUrl: 'ui/views/dashboardView.html',
         controller: 'DashboardController'
 
     });

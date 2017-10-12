@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('app.dmc').component('datamodel', {
-        templateUrl: 'dmc/ui/views/dataModelView.html',
+        templateUrl: 'ui/views/dataModelView.html',
         controller: 'DataModelController'
 
     });
@@ -11,7 +11,7 @@
 
             var formdata = messageService.getMessage();
             var data = {'requestType': 'getErdData', 'data': formdata.data};
-            commonRequestService.postRequestData(data)
+            commonRequestService.getRequestData(data)
                 .then(function(resp){
                     var erData = resp.data.result;
                     $timeout(function(){
