@@ -22,6 +22,16 @@
          color: #e7e7e7;
      }
 
+.navbar-brand, .login-body .navbar-brand {
+    background: url('/assets/img/dmc-logo1.png') no-repeat; /*UDS_logo_v2_354x33.png logo-uds-v1.png logo_v9.png*/
+    background-size: 321px 32px;
+    height: 22px;
+    width: 321px;
+    margin-top:8px;
+    margin-left: 22%;
+    border:0 solid red;
+}
+
 
          .navbar-primary .navbar-brand:hover,
          .navbar-primary .navbar-brand:focus {
