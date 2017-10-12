@@ -25,8 +25,7 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'nvd3', 'dmc.di
                 .when('/source', {
                     template: '<source-schema></source-schema>'
                 })
-
-                .otherwise({redirectTo: '/dashboard'});
+                .otherwise({redirectTo: '/login'});
         }])
     .controller('AppController',['$scope', '$location', function($scope, $location){
 
