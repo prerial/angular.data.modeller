@@ -19,7 +19,7 @@
                 });
                 elem.on("focus", function(e) {
                     e.preventDefault();
-                    template = $compile($templateCache.get('dmc/ui/directives/tooltip.html'))(scope);
+                    template = $compile($templateCache.get('ui/directives/tooltip.html'))(scope);
                     $('body').append(template);
                     template.css('display', 'none');
                     inputName = elem.attr('id');

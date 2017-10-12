@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('app.dmc').component('loginSplash', {
-        templateUrl: 'dmc/ui/views/loginAdminView.html',
+        templateUrl: 'ui/views/loginAdminView.html',
         controller: 'LoginController'
 
     });

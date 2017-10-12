@@ -1,12 +1,12 @@
 module.exports = function(grunt) {
     var app_files = [
-            'dmc/ui/common/*.js',
-            'dmc/ui/services/*.js',
-            'dmc/ui/directives/*.js',
-            'dmc/ui/components/*.js'
+            'ui/common/*.js',
+            'ui/services/*.js',
+            'ui/directives/*.js',
+            'ui/components/*.js'
         ],
-        modules = 'dmc/ui/app.js',
-        output = 'dmc/ui/main.js',
+        modules = 'ui/app.js',
+        output = 'ui/main.js',
         test_output = 'test/built.js';
 
 // Project configuration.
@@ -15,11 +15,11 @@ module.exports = function(grunt) {
         ngtemplates:    {
             dmcviews:          {
                 src:        [
-                    'dmc/ui/directives/*.html',
-                    'dmc/ui/views/*.html',
-                    'dmc/ui/views/*/*.html'
+                    'ui/directives/*.html',
+                    'ui/views/*.html',
+                    'ui/views/*/*.html'
                 ],
-                dest:       'dmc/ui/templates.js',
+                dest:       'ui/templates.js',
                 options:    {
                     htmlmin:  { collapseWhitespace: true, collapseBooleanAttributes: true }
                 }
@@ -29,13 +29,13 @@ module.exports = function(grunt) {
             options: {},
             all: {
                 src: [
-                    "dmc/ui/css/demo.css",
-                    "dmc/ui/css/directives.css",
-                    "dmc/ui/css/rainbow.css",
-                    "dmc/ui/css/erd.css",
-                    "dmc/ui/css/navbar.css"
+                    "ui/css/demo.css",
+                    "ui/css/directives.css",
+                    "ui/css/rainbow.css",
+                    "ui/css/erd.css",
+                    "ui/css/navbar.css"
                 ],
-                dest: "dmc/ui/main.css"
+                dest: "ui/main.css"
             }
         },
         connect: {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                     port: 3000,
                     protocol: 'http',
                     hostname: '*',
-                    base: './dmc/ui',
+                    base: './ui',
                     keepalive: true,
 //                    debug: true,
                     open: true
