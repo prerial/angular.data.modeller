@@ -25,11 +25,10 @@
 .navbar-brand, .login-body .navbar-brand {
     background: url('assets/img/dmc-logo.png') no-repeat;
     background-size: 321px 32px;
-    height: 22px;
+    height: 32px;
     width: 321px;
     margin-top:8px;
     margin-left: 22%;
-    border:0 solid red;
 }
 
 
