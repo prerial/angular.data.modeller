@@ -2,7 +2,7 @@ angular.module('dmcviews', []);
 angular.module('dmc.directives', []);
 angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'nvd3', 'dmc.directives', 'dmcviews', 'jlareau.pnotify'])
     .constant('Urls', {
-        'getErdData':'/data/erd.json'
+        'getErdData': angular.testmode? 'data/erd.json' : 'http://localhost:5000/dmc/v1.0/schemas'
     })
     .config([ '$locationProvider', '$routeProvider',
 
@@ -27,7 +27,7 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'nvd3', 'dmc.di
                 })
                 .otherwise({redirectTo: '/login'});
         }])
-    .controller('AppController',['$scope', '$location', function($scope, $location){
+    .controller('AppController',['$scope', '$location', 'Urls', function($scope, $location){
 
         $scope.isLogon = false;
         $scope.users = [];
