@@ -11,6 +11,11 @@
 
             var formdata = messageService.getMessage();
             var data = {'requestType': 'getErdData', 'data': formdata.data};
+            if(formdata.length === 0){
+                $timeout(function() { $scope.expired = true; }, 5000);
+                notification.error('Error: No Schema sources were selected\nPlease select Schema sources');
+                return;
+            }
             commonRequestService.getRequestData(data)
                 .then(function(resp){
                     var erData = resp.data.result;

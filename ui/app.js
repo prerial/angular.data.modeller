@@ -29,7 +29,7 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'nvd3', 'dmc.di
         }])
     .controller('AppController',['$scope', '$location', 'Urls', function($scope, $location){
 
-        $scope.isLogon = false;
+        $scope.isLogon = !($location.path() === '/login');
         $scope.users = [];
         $scope.isActive = function (viewLocation) {
             var active = (viewLocation === $location.path());
