@@ -39,7 +39,7 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'nvd3', 'dmc.di
             $scope.isLogon = true;
         });
         $scope.$on('$routeChangeStart', function(event, next, current) {
-            if(next.$$route.originalPath === '/login' && $scope.isLogon){
+            if(next.$$route && next.$$route.originalPath === '/login' && $scope.isLogon){
                 $scope.isLogon = false;
             }
             $scope.$broadcast("clearPopups");
