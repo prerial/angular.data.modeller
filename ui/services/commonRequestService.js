@@ -9,6 +9,15 @@
                 postRequestData: postRequestData,
                 getRequestData: getRequestData
             };
+            function toQueryString(obj) {
+                var parts = [];
+                for (var i in obj) {
+                    if (obj.hasOwnProperty(i)) {
+                        parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
+                    }
+                }
+                return parts.join("&");
+            }
             function httpPost(url, request){
                 var deferred = $q.defer();
                 if(url){
@@ -30,6 +39,7 @@
             function httpGet(url){
                 var deferred = $q.defer();
                 if(url){
+
                     $http.get(url)
                     .then(function (data) {
                         deferred.resolve(data);
@@ -46,8 +56,9 @@
             function postRequestData(data){
                 return httpPost(Urls[data.requestType], data);
             }
-            function getRequestData(data){
-                return httpGet(Urls[data.requestType], data);
+            function getRequestData(dt){
+                var url = Urls[dt.requestType] + '?' + toQueryString(dt.data);
+                return httpGet(url);
             }
             function getRequestDataByID(url){
                 return httpGet(url);

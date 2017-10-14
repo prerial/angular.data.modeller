@@ -36,6 +36,9 @@
     <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/nvd3/build/nv.d3.js"></script>
     <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script>
+        window.angular.testmode = document.location.search === '?mode=test';
+    </script>
 
     <link href="main.css" rel='stylesheet' />
     <script src="main.js"></script>
@@ -43,7 +46,6 @@
 </head>
 
 <body ng-cloak ng-controller="AppController">
-
             <nav class="navbar navbar-primary navbar-fixed-top">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
