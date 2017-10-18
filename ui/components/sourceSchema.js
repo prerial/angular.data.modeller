@@ -10,6 +10,7 @@
         function($scope, $location, $timeout, messageService) {
 
             this.submitForm = function(formdata){
+                formdata.single = sourceSchemaForm.single.value;
                 messageService.addMessage(formdata);
                 $location.path('/datamodel');
             }

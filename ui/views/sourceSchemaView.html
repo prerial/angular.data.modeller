@@ -20,13 +20,15 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="tbl_excl">Exclude Tables:</label>
                     <div class="col-sm-10">
-                        <input ng-model="source.tables_target" class="form-control" id="tbl_excl" placeholder="Enter list of tables to exclude" name="tbl_excl">
+                        <input ng-model="source.tables_exclude" class="form-control" id="tbl_excl" placeholder="Enter list of tables to exclude" name="tbl_excl">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
-                            <label><input ng-model="source.single" type="checkbox" name="auto">Single Step Denormalization</label>
+                            <label><input ng-model="source.single"
+                                          ng-true-value="true" ng-false-value="false"
+                                          type="checkbox" value="false" name="single">Single Step Denormalization</label>
                         </div>
                     </div>
                 </div>
@@ -47,7 +49,8 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="target">Target Schema:</label>
                     <div class="col-sm-10">
-                        <select ng-model="source.schema_target" class="form-control" id="target" ng-required="true" required>
+                        <select ng-model="source.schema_target"
+                                class="form-control" id="target" ng-required="true" required>
                             <option>Flatten</option>
                             <option>Star Schema</option>
                         </select>
@@ -58,7 +61,7 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <!--    <button type="submit" class="btn btn-primary">Submit</button> -->
                         <button ng-disabled="!sourceSchemaForm.$valid" type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-primary"><a ng-href="#/dashboard"><span style="color:white !important">Close</span></a></button>
+                        <button type="button" class="btn btn-primary">Close</button>
                     </div>
                 </div>
                 <pre>source = {{source | json}}</pre>
