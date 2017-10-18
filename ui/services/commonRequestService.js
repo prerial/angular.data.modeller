@@ -5,6 +5,7 @@
         function($rootScope, $q, $http, Urls) {
 
             return {
+                getRequestDataQueryString: getRequestDataQueryString,
                 getRequestDataByID: getRequestDataByID,
                 postRequestData: postRequestData,
                 getRequestData: getRequestData
@@ -39,7 +40,6 @@
             function httpGet(url){
                 var deferred = $q.defer();
                 if(url){
-
                     $http.get(url)
                     .then(function (data) {
                         deferred.resolve(data);
@@ -57,6 +57,13 @@
                 return httpPost(Urls[data.requestType], data);
             }
             function getRequestData(dt){
+                var url = Urls[dt.requestType];
+                if(dt.data){
+                    url = url + '?' + dt.data;
+                }
+                return httpGet(url);
+            }
+            function getRequestDataQueryString(dt){
                 var url = Urls[dt.requestType] + '?' + toQueryString(dt.data);
                 return httpGet(url);
             }

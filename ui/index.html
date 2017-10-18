@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.css">
     <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.buttons.css">
     <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
-<!--
-    <script src="bower_components/fastclick/lib/fastclick.js"></script>
-    <script src="bower_components/FileSaver/FileSaver.min.js"></script>
-    <script src="bower_components/jszip/dist/jszip.min.js"></script>
--->
+    <!--
+        <script src="bower_components/fastclick/lib/fastclick.js"></script>
+        <script src="bower_components/FileSaver/FileSaver.min.js"></script>
+        <script src="bower_components/jszip/dist/jszip.min.js"></script>
+    -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/pnotify/dist/pnotify.js"></script>
@@ -39,136 +39,135 @@
     <script>
         window.angular.testmode = document.location.search === '?mode=test';
     </script>
-
     <link href="main.css" rel='stylesheet' />
     <script src="main.js"></script>
 
 </head>
 
 <body ng-cloak ng-controller="AppController">
-            <nav class="navbar navbar-primary navbar-fixed-top">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-4">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="javascript:void(0)"></a>
-                    </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div ng-if="isLogon" class="collapse navbar-collapse" id="bs-example-navbar-collapse-4">
-                        <ul class="nav navbar-nav">
-                            <li ng-class="{ active: isActive('/dashboard')}"><a href="#/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
-                            <li ng-class="{ active: isActive('/source')}"><a ng-href="#/source">Source Schema</a></li>
-                            <li ng-class="{ active: isActive('/target')}"><a ng-href="#/target">Target Schema</a></li>
-                        </ul>
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="" data-toggle="modal" data-target="#myModal">  <span class="glyphicon glyphicon-user"></span> Manage Connections</a></li>
-                            <li><a ng-href="#/login"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                    <div ng-if="!isLogon" class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a ng-href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
+<nav class="navbar navbar-primary navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-4">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)"></a>
+        </div>
 
-                </div><!-- /.container-fluid -->
-            </nav><!-- /.navbar-primary -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div ng-if="isLogon" class="collapse navbar-collapse" id="bs-example-navbar-collapse-4">
+            <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive('/dashboard')}"><a href="#/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
+                <li ng-class="{ active: isActive('/source')}"><a ng-href="#/source">Source Schema</a></li>
+                <li ng-class="{ active: isActive('/target')}"><a ng-href="#/target">Target Schema</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="" data-toggle="modal" data-target="#myModal">  <span class="glyphicon glyphicon-user"></span> Manage Connections</a></li>
+                <li><a ng-href="#/login"><span class="glyphicon glyphicon-log-in"></span>  Logout</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+        <div ng-if="!isLogon" class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav><!-- /.navbar-primary -->
 
 
 
 <div ng-view ></div>
 
 
-            <!-- Modal - Manage Connections-->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
+<!-- Modal - Manage Connections-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
-                    <!-- Modal content-->
-                    <div class="modal-content" >
+        <!-- Modal content-->
+        <div class="modal-content" >
 
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Connection Parameters</h4>
-                        </div>
-
-                        <div class="modal-body">
-
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="conn1">Data Source Name:</label>
-                                    <div class="col-sm-10">
-                                        <input  class="form-control" id="conn1" >
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="user">User Name:</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="user" >
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="password">Password:</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="password" >
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="conn2">Connection String:</label>
-                                    <div class="col-sm-10">
-                                        <input  class="form-control" id="conn2" >
-                                    </div>
-                                </div>
-
-                                <!-- TODO - Replace with below  -->
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="db2">Database:</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" id="db2">
-                                            <option>Oracle</option>
-                                            <option>MySQL</option>
-                                            <option>Teradata</option>
-                                            <option>Sybase</option>
-                                            <option>Microsoft SQL Server</option>
-                                            <option>Microsoft SQL Server 2005</option>
-                                            <option>DB2</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="conn">Schema:</label>
-                                    <div class="col-sm-10">
-                                        <input  class="form-control" id="conn" >
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div> <!--/body-->
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Test Connection</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Connection Parameters</h4>
             </div>
+
+            <div class="modal-body">
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="conn1">Data Source Name:</label>
+                        <div class="col-sm-10">
+                            <input  class="form-control" id="conn1" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="user">User Name:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="user" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="password">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="conn2">Connection String:</label>
+                        <div class="col-sm-10">
+                            <input  class="form-control" id="conn2" >
+                        </div>
+                    </div>
+
+                    <!-- TODO - Replace with below  -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="db2">Database:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="db2">
+                                <option>Oracle</option>
+                                <option>MySQL</option>
+                                <option>Teradata</option>
+                                <option>Sybase</option>
+                                <option>Microsoft SQL Server</option>
+                                <option>Microsoft SQL Server 2005</option>
+                                <option>DB2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="conn">Schema:</label>
+                        <div class="col-sm-10">
+                            <input  class="form-control" id="conn" >
+                        </div>
+                    </div>
+                </form>
+
+            </div> <!--/body-->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Test Connection</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 <!--- End Modal -->
 
 </body>

@@ -1,7 +1,7 @@
 (function() {
     "use strict";
-
-    angular.module('app.dmc').factory('GraphService', function () {
+    angular.module('app.dmc').factory('GraphService', ['$rootScope',
+        function($rootScope) {
 
 //        var self = this;
         // Define the zoom function for the zoomable tree
@@ -113,7 +113,12 @@
                 // .on("click", click);
                 .on("click", function(){
                     PointColors = [PointColors[1], PointColors[0]];
-                    d3.select(this).style("fill", PointColors[0]);})
+                    d3.select(this).style("fill", PointColors[0]);
+                    var aaaaa = this.nextSibling.children[0].innerHTML;
+ //                   debugger;
+                    $rootScope.$broadcast('setAnchors', aaaaa)
+
+                })
                 .on({
                     "mouseover": function() {
                         d3.select(this).style("cursor", "pointer");
@@ -282,6 +287,5 @@
             buildGraph: buildGraph
         };
 
-    });
-
+    }]);
 })();

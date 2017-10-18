@@ -7,7 +7,7 @@
             identity: 0,
             getMessage: function() {
 
-                var data = this.messages[0]||[];
+                var data = this.messages[0];
                 this.messages = [];
                 return data;
             },
