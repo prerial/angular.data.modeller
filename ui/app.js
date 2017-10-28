@@ -1,6 +1,7 @@
 angular.module('dmcviews', []);
+angular.module('dmc.utils', []);
 angular.module('dmc.directives', []);
-angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'nvd3', 'dmc.directives', 'dmcviews', 'jlareau.pnotify'])
+angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmc.directives', 'dmc.utils', 'dmcviews', 'jlareau.pnotify'])
     .constant('Urls', {
         'getDashboardGridData': angular.testmode? 'data/erd.json' : 'http://localhost:5000/dmc/v1.0/schemas',
         'getErdData': angular.testmode? 'data/erd.json' : 'http://localhost:5000/dmc/v1.0/schemas/schema_id',
@@ -23,9 +24,6 @@ angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'nvd3', 'dmc.di
                 })
                 .when('/anchormodel', {
                     template: '<anchormodel></anchormodel>'
-                })
-                .when('/target', {
-                    template: '<target-schema></target-schema>'
                 })
                 .when('/source', {
                     template: '<source-schema></source-schema>'

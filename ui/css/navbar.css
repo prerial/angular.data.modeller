@@ -1,4 +1,31 @@
+.breadcrumb {
+    display: inline-block;
+    background: none;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0;
+}
 
+.breadcrumb-wrapper {
+    position:fixed;
+    width:100%;
+    height: 40px;
+    margin-top:50px;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #e2e2e2;
+    z-index:200;
+}
+
+.navbar {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+.btn-linked a{
+    color: #fff;
+}
 /****** Navbar color styles - primary *********/
 
  .navbar-a {

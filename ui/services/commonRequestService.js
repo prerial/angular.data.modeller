@@ -41,15 +41,15 @@
                 var deferred = $q.defer();
                 if(url){
                     $http.get(url)
-                    .then(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .catch(function (msg, a, b, c) {
-                        $rootScope.$broadcast('error:server', msg);
-                        deferred.reject(msg);
-                    });
+                        .then(function (data) {
+                            deferred.resolve(data);
+                        })
+                        .catch(function (msg, a, b, c) {
+                            $rootScope.$broadcast('error:server', msg);
+                            deferred.reject(msg);
+                        });
                 }else{
-                        deferred.reject({'responseText':'REST url error'});
+                    deferred.reject({'responseText':'REST url error'});
                 }
                 return deferred.promise;
             }

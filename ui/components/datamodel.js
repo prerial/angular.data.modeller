@@ -6,8 +6,9 @@
         controller: 'DataModelController'
 
     });
-    angular.module('app.dmc').controller('DataModelController', ['$scope', '$location', '$timeout', 'notificationService', 'Urls', 'messageService', 'CommonRequestService', 'GraphService',
-        function($scope, $location, $timeout, notification, urls, messageService, commonRequestService, graphService) {
+    angular.module('app.dmc').controller('DataModelController', ['$scope', '$location', '$timeout', 'notificationService', 'Urls', 'UtilsService', 'messageService', 'CommonRequestService', 'GraphService',
+        function($scope, $location, $timeout, notification, urls, utilsService, messageService, commonRequestService, graphService) {
+
             var self = this;
             this.data = [];
             this.anchors = [];
@@ -32,7 +33,8 @@
                     var parts = [];
                     for (var i in obj) {
                         if (obj.hasOwnProperty(i)) {
-                            parts.push(encodeURIComponent(obj[i]));
+                            parts.push(obj[i]);
+//                            parts.push(encodeURIComponent(obj[i]));
                         }
                     }
                     return parts.join(",");
@@ -45,56 +47,58 @@
                 }
             };
 
-            $scope.$on('setAnchors', function(evt, anchor){
-                Object.defineProperty(self.anchoroot[self.anchoroot.type], anchor, {
-                    writable: true,
-                    enumerable: true,
-                    configurable: true,
-                    value: anchor
-                });
+            $scope.$on('setAnchors', function(evt, anchor, blnAdd){
+                if(blnAdd){
+                    Object.defineProperty(self.anchoroot[self.anchoroot.type], anchor, {
+                        writable: true,
+                        enumerable: true,
+                        configurable: true,
+                        value: anchor
+                    });
+                }else{
+                    delete self.anchoroot[self.anchoroot.type][anchor];
+                }
                 $scope.$apply();
-            });
+             });
 
+            utilsService.showSpinner();
 
             this.resetAnchorsForm = function(){
                 this.anchoroot.reset();
+                notification.success('All data was reset. Please select Tables\' data and click Submit button');
+                $('.ui-pnotify').css('top', '110px')
             };
 
             this.submitForm = function(){
                 this.anchors = [];
-                this.anchors.push(encodeURIComponent(this.anchoroot.flatten()));
+//                this.anchors.push(encodeURIComponent(this.anchoroot.flatten()));
+                this.anchors.push(this.anchoroot.flatten());
                 messageService.addMessage(this.anchors[0]);
                 $location.path('/anchormodel');
-/*
-//                this.anchors.push(encodeURIComponent(this.anchoroot.flatten()));
-                var data = {'requestType': 'getErdAnchorData', 'data': this.anchors[0]};
-                commonRequestService.getRequestData(data)
-                    .then(function(resp){
-//                        var erData = resp.data.result;
-//                        $timeout(function(){
-//                            graphService.buildGraph(erData)
-//                        },500);
-                        $location.path('/anchormodel');
-
-                    }).catch( function(msg){
-                    $timeout(function() { $scope.expired = true; }, 5000);
-                    notification.error('Error: ' + msg.responseText);
-                });
-*/
             };
 
             var formdata = messageService.getMessage();
+            if(!formdata){
+                utilsService.hideSpinner();
+                $location.path('/login');
+                return;
+            }
+            if(formdata.data === 'cancel'){
+                formdata = messageService.getPrevious();
+            }
             var data = {'requestType': 'getErdData', 'data': formdata.data};
             commonRequestService.getRequestDataQueryString(data)
                 .then(function(resp){
                     self.resetAnchorsForm();
-                    var erData = resp.data;
+                    var erData = resp.data.payload;
                     $timeout(function(){
-                        graphService.buildGraph(erData)
+                        graphService.buildGraph(erData, false);
+                        utilsService.hideSpinner();
                     },500);
                 }).catch( function(msg){
-                $timeout(function() { $scope.expired = true; }, 5000);
-                notification.error('Error: ' + msg.responseText);
+                    $timeout(function() { $scope.expired = true; }, 5000);
+                    notification.error('Error: ' + msg.responseText);
+                    utilsService.hideSpinner();
             });
 
         }]);
