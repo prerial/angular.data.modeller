@@ -1,12 +1,32 @@
-<div class="container container-view" style="position:absolute;z-index:200">
+<div class="container-fluid breadcrumb-wrapper">
+    <!--
+        <ol class="breadcrumb hidden-xs hidden-sm" role="navigation">
+            <li><a href="#/dashboard">Home</a></li>
+            <li><a href="#/source" >Source Schema</a></li>
+            <li><a href="#/datamodel" ng-click="$ctrl.cancel()">Data Model</a></li>
+            <li class="active">Selected Model</li>
+        </ol>
+    -->
+    <form name="anchorsForm" novalidate class="form-horizontal" ng-submit="$ctrl.submitForm(source)">
+    <div style="float:right;margin-top:8px;">
+        <label style="margin-right:12px">Select Tables: </label>
+        <label style="margin-right:8px;font-weight:500"><input type="radio" ng-model="$ctrl.anchoroot.type" value="anchor"> Anchor</label>
+        <label style="margin-right:8px;font-weight:500"><input type="radio" ng-model="$ctrl.anchoroot.type" value="include"> Include</label>
+        <label style="margin-right:8px;font-weight:500"><input type="radio" ng-model="$ctrl.anchoroot.type" value="exclude"> Exclude</label>
+        <button ng-disabled="!anchorsForm.$valid" type="submit" class="btn btn-xs btn-primary">Submit</button>
+        <button type="button" ng-click="$ctrl.resetAnchorsForm()" class="btn btn-xs btn-primary">Reset</button>
+    </div>
+    </form>
+</div>
+<!--
+<div class="container container-view" style="position:fixed;z-index:200">
     <div class="row">
         <div class="col-md-14">
             <div class="row">
-                <div class="col-md-4" style="background-color: white">
-                    <h3>Selected Tables</h3>
+                <div class="col-md-4"  style="padding-bottom:20px;background-color: #dedede;">
+                    <h3>Select Tables</h3>
                     <form name="anchorsForm" novalidate class="form-horizontal" ng-submit="$ctrl.submitForm(source)">
 
-                        Pick a topic:
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
@@ -18,30 +38,12 @@
                                 </div>
                             </div>
                         </div>
-<!--
-                        <div class="form-group">
-                            <label for="anchorname">Anchor Name</label>
-                            <div id="username-error" class="popover" ng-messages="anchorsForm.anchorname.$error">
-                                <span ng-message="required">Anchor name is required.</span>
-                            </div>
-                            <input type="text" id="anchorname" name="anchorname" ng-model="$ctrl.anchor.name" class="form-control" placeholder="Please enter Anchor name" ng-required="true" required/>
-                        </div>
--->
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-<!--
-                                <button ng-if="$ctrl.anchor.type == 'anchor' && $ctrl.checkTables('include')" ng-disabled="!anchorsForm.$valid" type="button" class="btn btn-primary">Add Include Tables</button>
-                                <button ng-if="$ctrl.anchor.type == 'include'" ng-disabled="!anchorsForm.$valid" type="button" class="btn btn-primary">Add Exclude Tables</button>
--->
                                 <button ng-disabled="!anchorsForm.$valid" type="submit" class="btn btn-primary">Submit</button>
                                 <button type="button" ng-click="$ctrl.resetAnchorsForm()" class="btn btn-primary">Reset</button>
                             </div>
                         </div>
-
-                        <pre>Type = {{$ctrl.anchoroot.type | json}}</pre>
-<!--                        <pre>Anchors = {{$ctrl.anchors | json}}</pre>
-                        <pre>Anchor = {{$ctrl.anchor | json}}</pre>
--->
                     </form>
 
                 </div>
@@ -49,5 +51,11 @@
         </div>
     </div>
 </div>
+-->
+<!--
+                        <pre>Type = {{$ctrl.anchortype | json}}</pre>
+                        <pre>Anchors = {{$ctrl.anchors | json}}</pre>
+                        <pre>Anchor = {{$ctrl.anchor | json}}</pre>
+-->
 
-<div id="erDiagram" class="top" style="position:absolute;z-index:100"></div>
+<div id="erDiagram" class="top" style="position:absolute;top:60px;z-index:100"></div>

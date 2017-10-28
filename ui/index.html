@@ -14,7 +14,6 @@
     <link rel='stylesheet' href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.css">
     <link rel="stylesheet" href="bower_components/pnotify/dist/pnotify.buttons.css">
-    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
     <!--
         <script src="bower_components/fastclick/lib/fastclick.js"></script>
         <script src="bower_components/FileSaver/FileSaver.min.js"></script>
@@ -33,9 +32,7 @@
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
     <script src="bower_components/angular-pnotify/src/angular-pnotify.js"></script>
     <script src="libs/ui-bootstrap-tpls-2.5.0.min.js"></script>
-    <script src="bower_components/d3/d3.js"></script>
-    <script src="bower_components/nvd3/build/nv.d3.js"></script>
-    <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script src="libs/d3.v3.js"></script>
     <script>
         window.angular.testmode = document.location.search === '?mode=test';
     </script>
@@ -64,7 +61,6 @@
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: isActive('/dashboard')}"><a href="#/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
                 <li ng-class="{ active: isActive('/source')}"><a ng-href="#/source">Source Schema</a></li>
-                <li ng-class="{ active: isActive('/target')}"><a ng-href="#/target">Target Schema</a></li>
             </ul>
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -170,5 +166,10 @@
 </div>
 <!--- End Modal -->
 
+<div id="dmc-back-container"></div>
+
+<div id="busyModal" class="dmc-spinner" role="dialog" data-backdrop="static"  data-keyboard="false">
+    <img src="assets/img/spinner.gif" width='80' />
+</div>
 </body>
 </html>

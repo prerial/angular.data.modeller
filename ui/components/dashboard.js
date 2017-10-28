@@ -6,11 +6,13 @@
         controller: 'DashboardController'
 
     });
-    angular.module('app.dmc').controller('DashboardController', ['$scope', '$location', '$timeout',
-        function($scope, $location, $timeout) {
+    angular.module('app.dmc').controller('DashboardController', ['$scope', '$location', '$timeout', 'UtilsService',
+        function($scope, $location, $timeout, UtilsService) {
 
             var self = this;
             this.title = 'Dashboard View';
+
+            UtilsService.showSpinner();
 
             this.names = [
                 {name: 'mysql_northwind', description: 'MySQL - NorthWind Example', type: 'Database', database: 'MySQL' , schema: 'northwind'  },
@@ -23,5 +25,6 @@
             $scope.formSubmit = function() {
             };
 
+            UtilsService.hideSpinner();
         }]);
 })();
