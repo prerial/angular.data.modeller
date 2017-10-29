@@ -1,34 +1,23 @@
 var express  = require('express');
 var app      = express();
-var fs       = require("fs");
 var httpProxy = require('http-proxy');
 var apiProxy = httpProxy.createProxyServer();
 
 app.use(express.static(__dirname + '/ui'));
-app.set('port', process.env.PORT || 3000);
 
-var postingAPI = 'http://localhost:5000/app1/*',
-    realtimeAPI = 'http://localhost:5000/app2/*',
-    onemoreAPI = 'http://localhost:5000/',
-    onemoreAPI1 = 'http://localhost:5000/';
+var pythonAPI = 'http://localhost:5000/';
 
-app.all("/app1/*", function(req, res) {
-    console.log('redirecting to APP1');
-    apiProxy.web(req, res, {target: postingAPI});
-});
-
-app.all("/app2/*", function(req, res) {
-    console.log('redirecting to APP2');
-    apiProxy.web(req, res, {target: realtimeAPI});
-});
-
-app.all("/app3/schemas", function(req, res) {
-    console.log('redirecting to APP4');
-    apiProxy.web(req, res, {target: onemoreAPI});
+app.all("/dmc/v1.0/schemas", function(req, res) {
+    console.log('redirecting to schemas');
+    apiProxy.web(req, res, {target: pythonAPI});
 });
 app.all("/dmc/v1.0/schemas/schema_id", function(req, res) {
-    console.log('redirecting to APP3');
-    apiProxy.web(req, res, {target: onemoreAPI});
+    console.log('redirecting to schema_id');
+    apiProxy.web(req, res, {target: pythonAPI});
+});
+app.all("/dmc/v1.0/schemas/denorm", function(req, res) {
+    console.log('redirecting to denorm');
+    apiProxy.web(req, res, {target: pythonAPI});
 });
 
 app.listen(3000, function(){
