@@ -1,12 +1,4 @@
 <div class="container-fluid breadcrumb-wrapper">
-    <!--
-        <ol class="breadcrumb hidden-xs hidden-sm" role="navigation">
-            <li><a href="#/dashboard">Home</a></li>
-            <li><a href="#/source" >Source Schema</a></li>
-            <li><a href="#/datamodel" ng-click="$ctrl.cancel()">Data Model</a></li>
-            <li class="active">Selected Model</li>
-        </ol>
-    -->
     <form name="anchorsForm" novalidate class="form-horizontal" ng-submit="$ctrl.submitForm(source)">
     <div style="float:right;margin-top:8px;">
         <label style="margin-right:12px">Select Tables: </label>
@@ -18,44 +10,5 @@
     </div>
     </form>
 </div>
-<!--
-<div class="container container-view" style="position:fixed;z-index:200">
-    <div class="row">
-        <div class="col-md-14">
-            <div class="row">
-                <div class="col-md-4"  style="padding-bottom:20px;background-color: #dedede;">
-                    <h3>Select Tables</h3>
-                    <form name="anchorsForm" novalidate class="form-horizontal" ng-submit="$ctrl.submitForm(source)">
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <ul>
-                                        <li><label><input type="radio" ng-model="$ctrl.anchoroot.type" value="anchor"> Anchor Tables</label></li>
-                                        <li><label><input type="radio" ng-model="$ctrl.anchoroot.type" value="include"> Include Tables</label></li>
-                                        <li><label><input type="radio" ng-model="$ctrl.anchoroot.type" value="exclude"> Exclude Tables</label></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button ng-disabled="!anchorsForm.$valid" type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" ng-click="$ctrl.resetAnchorsForm()" class="btn btn-primary">Reset</button>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
--->
-<!--
-                        <pre>Type = {{$ctrl.anchortype | json}}</pre>
-                        <pre>Anchors = {{$ctrl.anchors | json}}</pre>
-                        <pre>Anchor = {{$ctrl.anchor | json}}</pre>
--->
 
 <div id="erDiagram" class="top" style="position:absolute;top:60px;z-index:100"></div>
