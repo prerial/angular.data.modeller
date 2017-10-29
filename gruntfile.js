@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         ],
         modules = 'ui/app.js',
         output = 'ui/main.js',
-        test_output = 'test/built.js';
+        test_output = 'ui/test/built.js';
 
 // Project configuration.
     grunt.initConfig({
@@ -36,6 +36,11 @@ module.exports = function(grunt) {
                     "ui/css/navbar.css"
                 ],
                 dest: "ui/main.css"
+            }
+        },
+        run: {
+            commands: {
+                exec: 'node server'
             }
         },
         connect: {
@@ -154,9 +159,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
 //	grunt.loadNpmTasks('grunt-contrib-compass');
 //	grunt.loadNpmTasks('grunt-protractor-runner');
-//	grunt.loadNpmTasks('grunt-run');
+	grunt.loadNpmTasks('grunt-run');
 
-    grunt.registerTask('localhost', ['connect:server', 'watch']);
+    grunt.registerTask('localhost', ['run:commands']);
+//    grunt.registerTask('localhost', ['connect:server', 'watch']);
 
 //	grunt.registerTask('serve', ['karma:continuous:start', 'run:mock_server', 'connect:livereload', 'watch:karma']);
 
