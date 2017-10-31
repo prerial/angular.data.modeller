@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                 src: [
                     "ui/css/demo.css",
                     "ui/css/directives.css",
-                    "ui/css/rainbow.css",
+//                    "ui/css/rainbow.css",
                     "ui/css/erd.css",
                     "ui/css/navbar.css"
                 ],
@@ -43,6 +43,14 @@ module.exports = function(grunt) {
                 exec: 'node server'
             }
         },
+   shell: {
+        pythonServer: {
+            options: {
+                stdout: true
+            },
+            command: 'C:\\Users\\Mikhail\\Anaconda2\\python.exe C:/BitBucket/angular.data.modeller/app/core/flaskServer.py runserver 0.0.0.0:8000 --insecure'
+        }
+    },
         connect: {
             server: {
                 options: {
@@ -159,9 +167,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
 //	grunt.loadNpmTasks('grunt-contrib-compass');
 //	grunt.loadNpmTasks('grunt-protractor-runner');
+
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.registerTask('python server', ['shell:pythonServer']);
+
 	grunt.loadNpmTasks('grunt-run');
 
-    grunt.registerTask('localhost', ['run:commands']);
+    grunt.registerTask('node server', [ 'ngtemplates', 'concat', 'concat_css','run:commands']);
 //    grunt.registerTask('localhost', ['connect:server', 'watch']);
 
 //	grunt.registerTask('serve', ['karma:continuous:start', 'run:mock_server', 'connect:livereload', 'watch:karma']);
