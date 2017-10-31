@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('app.dmc').component('sourceSchema', {
-        templateUrl: 'ui/views/sourceSchemaView.html',
+        templateUrl: 'node.web-server/views/sourceSchemaView.html',
         controller: 'SourceSchemaController'
 
     });

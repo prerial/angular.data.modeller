@@ -5,7 +5,7 @@
   "homepage": "https://github.com/data.modeler.converter.git",
   "license": "MIT",
   "private": true,
-  "directory":"dmc/ui/",
+  "directory":"node.web-server/",
   "dependencies": {
     "angular": "~1.5.11",
     "angular-animate": "~1.5.11",

@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('app.dmc').component('datamodel', {
-        templateUrl: 'ui/views/dataModelView.html',
+        templateUrl: 'node.web-server/views/dataModelView.html',
         controller: 'DataModelController'
 
     });
