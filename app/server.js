@@ -2,8 +2,8 @@ var express  = require('express');
 var app      = express();
 var httpProxy = require('http-proxy');
 var apiProxy = httpProxy.createProxyServer();
-
-app.use(express.static(__dirname + '/ui'));
+var port = 3000;
+app.use(express.static(__dirname + '/node.web-server'));
 
 var pythonAPI = 'http://localhost:5000/';
 
@@ -20,6 +20,6 @@ app.all("/dmc/v1.0/schemas/denorm", function(req, res) {
     apiProxy.web(req, res, {target: pythonAPI});
 });
 
-app.listen(3000, function(){
-    console.log('Server started on 3000');
+app.listen(port, function(){
+    console.log('Server started on ' + port);
 });
