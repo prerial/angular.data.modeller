@@ -87,7 +87,9 @@
                 formdata = messageService.getPrevious();
             }
             var data = {'requestType': 'getErdData', 'data': formdata.data};
-            commonRequestService.getRequestDataQueryString(data)
+debugger
+            commonRequestService.postRequestData(data)
+//            commonRequestService.getRequestDataQueryString(data)
                 .then(function(resp){
                     self.resetAnchorsForm();
                     var erData = resp.data.payload;

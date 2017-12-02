@@ -11,20 +11,9 @@ app.all("/dmc/v1.0/schemas", function(req, res) {
     console.log('redirecting to schemas');
     apiProxy.web(req, res, {target: pythonAPI});
 });
-app.all("/", function(req, res) {
-    console.log('redirecting to /');
-    apiProxy.web(req, res, {target: pythonAPI});
-});
-app.all("/login", function(req, res) {
-    console.log('redirecting to login');
-    apiProxy.web(req, res, {target: pythonAPI});
-});
 app.all("/dmc/v1.0/schemas/schema_id", function(req, res) {
     console.log('redirecting to schema_id');
-    apiProxy.web(req, res, {target: pythonAPI}, function(e) {
-            console.log('AAAAAAAAAAAAA');
-
-    });
+    apiProxy.web(req, res, {target: pythonAPI});
 });
 app.all("/dmc/v1.0/schemas/denorm", function(req, res) {
     console.log('redirecting to denorm');
