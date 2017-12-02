@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('app.dmc').component('anchormodel', {
-        templateUrl: 'ui/views/anchorModelView.html',
+        templateUrl: 'node.web-server/views/anchorModelView.html',
         controller: 'AnchorModelController'
     });
 

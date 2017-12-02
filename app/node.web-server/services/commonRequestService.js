@@ -44,7 +44,7 @@
                         .then(function (data) {
                             deferred.resolve(data);
                         })
-                        .catch(function (msg, a, b, c) {
+                        .catch(function (msg) {
                             $rootScope.$broadcast('error:server', msg);
                             deferred.reject(msg);
                         });

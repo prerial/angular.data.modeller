@@ -1,13 +1,13 @@
 module.exports = function(grunt) {
     var app_files = [
-            'ui/common/*.js',
-            'ui/services/*.js',
-            'ui/directives/*.js',
-            'ui/components/*.js'
+            'node.web-server/common/*.js',
+            'node.web-server/services/*.js',
+            'node.web-server/directives/*.js',
+            'node.web-server/components/*.js'
         ],
-        modules = 'ui/app.js',
-        output = 'ui/main.js',
-        test_output = 'test/built.js';
+        modules = 'node.web-server/app.js',
+        output = 'node.web-server/main.js',
+        test_output = 'node.web-server/test/built.js';
 
 // Project configuration.
     grunt.initConfig({
@@ -15,11 +15,11 @@ module.exports = function(grunt) {
         ngtemplates:    {
             dmcviews:          {
                 src:        [
-                    'ui/directives/*.html',
-                    'ui/views/*.html',
-                    'ui/views/*/*.html'
+                    'node.web-server/directives/*.html',
+                    'node.web-server/views/*.html',
+                    'node.web-server/views/*/*.html'
                 ],
-                dest:       'ui/templates.js',
+                dest:       'node.web-server/templates.js',
                 options:    {
                     htmlmin:  { collapseWhitespace: true, collapseBooleanAttributes: true }
                 }
@@ -29,22 +29,35 @@ module.exports = function(grunt) {
             options: {},
             all: {
                 src: [
-                    "ui/css/demo.css",
-                    "ui/css/directives.css",
-                    "ui/css/rainbow.css",
-                    "ui/css/erd.css",
-                    "ui/css/navbar.css"
+                    "node.web-server/css/demo.css",
+                    "node.web-server/css/directives.css",
+//                    "node.web-server/css/rainbow.css",
+                    "node.web-server/css/erd.css",
+                    "node.web-server/css/navbar.css"
                 ],
-                dest: "ui/main.css"
+                dest: "node.web-server/main.css"
             }
         },
+        run: {
+            commands: {
+                exec: 'node server'
+            }
+        },
+   shell: {
+        pythonServer: {
+            options: {
+                stdout: true
+            },
+            command: 'C:\\Users\\Mikhail\\Anaconda2\\python.exe C:/BitBucket/angular.data.modeller/app/python.rest-server/flaskServer.py runserver 127.0.0.1:5000 --insecure'
+        }
+    },
         connect: {
             server: {
                 options: {
                     port: 3000,
                     protocol: 'http',
                     hostname: '*',
-                    base: './ui',
+                    base: './node.web-server',
                     keepalive: true,
 //                    debug: true,
                     open: true
@@ -154,9 +167,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
 //	grunt.loadNpmTasks('grunt-contrib-compass');
 //	grunt.loadNpmTasks('grunt-protractor-runner');
-//	grunt.loadNpmTasks('grunt-run');
 
-    grunt.registerTask('localhost', ['connect:server', 'watch']);
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.registerTask('python server', ['shell:pythonServer']);
+
+	grunt.loadNpmTasks('grunt-run');
+
+    grunt.registerTask('node server', [ 'ngtemplates', 'concat', 'concat_css','run:commands']);
+//    grunt.registerTask('localhost', ['connect:server', 'watch']);
 
 //	grunt.registerTask('serve', ['karma:continuous:start', 'run:mock_server', 'connect:livereload', 'watch:karma']);
 
