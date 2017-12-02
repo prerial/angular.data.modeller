@@ -19,10 +19,19 @@
                 }
                 return parts.join("&");
             }
-            function httpPost(url, request){
+            function httpPost(url, dt){
                 var deferred = $q.defer();
-                if(url){
-                    $http.post(url, request)
+debugger
+                var rest = {
+//                    url: '/dmc/v1.0/schemas/schema_id',
+                    url: '/login',
+                    method: 'POST',
+                    data: dt.data,
+                    headers: {'Access-Control-Allow-Origin':'*'}
+                };
+               if(url){
+//                    $http.post(url, dt)
+                    $http(rest)
                         .then(function (data) {
                             deferred.resolve(data);
                         })
@@ -39,6 +48,7 @@
             }
             function httpGet(url){
                 var deferred = $q.defer();
+//                url = '/dmc/v1.0/schemas/schema_id';
                 if(url){
                     $http.get(url)
                         .then(function (data) {

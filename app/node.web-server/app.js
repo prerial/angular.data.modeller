@@ -3,9 +3,11 @@ angular.module('dmc.utils', []);
 angular.module('dmc.directives', []);
 angular.module('app.dmc', ['ngRoute', 'ngMessages', 'ngAnimate', 'dmc.directives', 'dmc.utils', 'dmcviews', 'jlareau.pnotify'])
     .constant('Urls', {
-        'getDashboardGridData': angular.testmode? 'data/erd.json' : 'http://localhost:5000/dmc/v1.0/schemas',
-        'getErdData': angular.testmode? 'data/erd.json' : 'http://localhost:5000/dmc/v1.0/schemas/schema_id',
-        'getErdAnchorData': angular.testmode? 'data/denorm_json_ddl_dml.json' : 'http://localhost:5000/dmc/v1.0/schemas/denorm'
+        'login': angular.testmode? 'data/erd.json' : '/login',
+        'getDashboardGridData': angular.testmode? 'data/erd.json' : '/dmc/v1.0/schemas',
+        'getErdData1': angular.testmode? 'data/erd.json' : '/dmc/v1.0/schemas/schema_id',
+        'getErdData': angular.testmode? 'data/erd.json' : 'http://localhost:5000/dmc/v1.0/schemas/connections',
+        'getErdAnchorData': angular.testmode? 'data/denorm_json_ddl_dml.json' : '/dmc/v1.0/schemas/denorm'
     })
     .config([ '$locationProvider', '$routeProvider',
 
